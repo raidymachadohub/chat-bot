@@ -1,0 +1,22 @@
+# RabbitMQ properties
+services:
+        rabbitmq:
+               image: rabbitmq:3-management
+               container_name: rabbitmq_management
+               networks:
+                - services-network
+               ports: 
+                - 5672:5672
+                - 15672:15672 
+               
+               volumes:
+                # data persistence
+                - rabbitmq_data:/var/lib/rabbitmq/
+                # data mapping -> host: container
+                # queues and messages data of the container will be stored on the host
+               restart: always
+
+volumes:
+   rabbitmq_data:
+networks:
+  services-network:
