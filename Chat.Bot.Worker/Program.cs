@@ -35,6 +35,8 @@ public class Program
                     .AddServices()
                     .AddAutoMapper()
                     .AddRabbitMQ()
+                    .AddHubs()
+                    .AddConfigurations(config)
                     .AddAuthentication(config)
                     .AddHttpClient(config);
             });

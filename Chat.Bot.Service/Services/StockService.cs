@@ -17,7 +17,7 @@ namespace Chat.Bot.Service.Services
         {
             var stocks = await _stockFacade.GetStockAsync(stockCode);
 
-            if (stocks.Contains("N/D"))
+            if (stocks.Contains("N/D") || string.IsNullOrEmpty(stocks))
                 return new Stock();
             
             var stock = stocks.Split(new[] { Environment.NewLine }, StringSplitOptions.None)

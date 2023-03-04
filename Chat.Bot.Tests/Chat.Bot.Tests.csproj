@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoBogus" Version="2.13.1" />
+        <PackageReference Include="Autofac" Version="6.5.0" />
+        <PackageReference Include="Autofac.Extras.FakeItEasy" Version="7.0.0" />
+        <PackageReference Include="FakeItEasy" Version="7.3.1" />
+        <PackageReference Include="FluentAssertions" Version="6.10.0" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+        <PackageReference Include="RichardSzalay.MockHttp" Version="6.0.0" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="3.1.2">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Chat.Bot.Service\Chat.Bot.Service.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Services\Clients\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Services\Clients\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Services\Clients\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Infrastructure\Facade" />
+    </ItemGroup>
+
+</Project>

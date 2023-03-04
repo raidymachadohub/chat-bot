@@ -1,0 +1,9 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/Highlighting/SweaWarningsMode/@EntryValue">ShowAndRun</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=72a1bfda_002Dfb06_002D438f_002D89b1_002D46d5451b5e20/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Should_return_empty_when_send_stock_code_invalid" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::560379B6-5789-4850-83C0-97F78F3D5607::net6.0::Chat.Bot.Tests.Services.StockServiceTests.Should_return_empty_when_send_stock_code_invalid&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::560379B6-5789-4850-83C0-97F78F3D5607::net6.0::Chat.Bot.Tests.Services.StockServiceTests.Should_return_stock_when_send_stock_code_not_Invalid&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::560379B6-5789-4850-83C0-97F78F3D5607::net6.0::Chat.Bot.Tests.Infrastructure.Facade.StockFacadeTests.Should_return_stock_when_input_code&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

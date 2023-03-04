@@ -1,7 +1,9 @@
 using System.Text;
+using Chat.Bot.Domain.Config;
 using Chat.Bot.Domain.Constants;
 using Chat.Bot.Domain.Model;
 using Chat.Bot.Infrastructure.Interfaces.Facade;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -11,13 +13,16 @@ namespace Chat.Bot.Infrastructure.Facade
     public class RabbitMQFacade : IRabbitMQFacade
     {
         private readonly ConnectionFactory _connectionFactory;
+        private readonly RabbitMQConfig _rabbitMqConfig;
 
-        public RabbitMQFacade()
+        public RabbitMQFacade(IOptions<RabbitMQConfig> rabbitMqConfig)
         {
+            _rabbitMqConfig = rabbitMqConfig.Value;
+            
             _connectionFactory = new ConnectionFactory()
             {
-                HostName = "localhost",
-                Port = 5672
+                HostName = _rabbitMqConfig.HostName,
+                Port = _rabbitMqConfig.Port
             };
         }
 
@@ -53,10 +58,7 @@ namespace Chat.Bot.Infrastructure.Facade
                 arguments: null);
 
             var result = channel.BasicGet(queue: RabbitMQConstant.QueueNameBot, autoAck: true);
-            if (result == null)
-                return null;
-            
-            return JsonConvert.DeserializeObject<Stock>(Encoding.UTF8.GetString(result.Body.ToArray()));
+            return result == null ? null : JsonConvert.DeserializeObject<Stock>(Encoding.UTF8.GetString(result.Body.ToArray()));
         }
     }
 }

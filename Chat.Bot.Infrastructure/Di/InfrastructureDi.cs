@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using Chat.Bot.Domain.Config;
+using Chat.Bot.Infrastructure.Clients;
 using Chat.Bot.Infrastructure.Facade;
 using Chat.Bot.Infrastructure.Facade.Interfaces;
 using Chat.Bot.Infrastructure.Interfaces.Facade;
@@ -17,7 +19,7 @@ namespace Chat.Bot.Infrastructure.Di
             services.AddTransient<IStockFacade, StockFacade>();
         public static IServiceCollection AddAutoMapper(this IServiceCollection services) =>
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-        public static IServiceCollection AddHttpClient(this IServiceCollection services, IConfiguration configuration)
+        public static void AddHttpClient(this IServiceCollection services, IConfiguration configuration)
         {
             var url = configuration.GetSection("StockConfig:StockURL").Value;
 
@@ -28,7 +30,6 @@ namespace Chat.Bot.Infrastructure.Di
             {
                 options.BaseAddress = new Uri(url);
             });
-            return services;
         }
         public static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
@@ -55,8 +56,13 @@ namespace Chat.Bot.Infrastructure.Di
                 });
             return services;
         }
-
         public static IServiceCollection AddRabbitMQ(this IServiceCollection services)
             => services.AddTransient<IRabbitMQFacade, RabbitMQFacade>();
+        public static IServiceCollection AddHubs(this IServiceCollection services) =>
+            services.AddTransient<IHubChatRoom, HubChatRoom>();
+        public static IServiceCollection AddConfigurations(this IServiceCollection services,
+            IConfiguration configuration) =>
+            services.Configure<RabbitMQConfig>(configuration.GetSection("RabbitMQ"))
+                .Configure<HubConnectionConfig>(configuration.GetSection("Hub"));
     }
 }
